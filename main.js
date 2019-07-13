@@ -16,9 +16,7 @@ const port = process.env.PORT || 3000;
 module.exports = { app, connection };
 
 const cartsApis = require('./apis/carts.js');
-const customersApis = require('./apis/customers.js');
 const itemsApis = require('./apis/items.js');
-const ordersApis = require('./apis/orders.js');
 
 // Body Parser Middleware
 app.use(bodyParser.json());
@@ -31,8 +29,9 @@ app.get('/', async (req, res) => {
 
 
 // delete item from cart
-app.delete('/carts/:id', async (req, res) => {
-  cartsApis.deleteCartItem(req, res);
+app.delete('/cart/:id/delete', async (req, res) => {
+  console.log('done')
+  cartsApis.deleteFromCart(req, res);
 });
 
 // Get Items Endpoint
@@ -42,5 +41,5 @@ app.get('/items', async (req, res) => {
 
 // Start Server
 app.listen('3000', () => {
-  console.log(`Server Started On Port ${port}`);
+  console.log(`Started at pport >>>>>> ${port}`);
 });
